@@ -1,0 +1,17 @@
+{
+  "name": "sunguoqiang",
+  "description": "A new Project...",
+  "main": "main.js",
+  "version": "0.0.1",
+  "scripts": {},
+  "author": "sunguoqiang",
+  "licence": "MIT",
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "commander": "^4.1.0",
+    "execa": "^4.0.0"
+  },
+  "bin": {
+    "terra": "index.js"
+  }
+}
