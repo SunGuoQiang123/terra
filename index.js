@@ -1,9 +1,9 @@
 #! /usr/bin/env node
 const fs = require('fs');
 const program = require('commander');
+const execa = require('execa');
 const chalk = require('chalk');
 const path = require('path');
-const child_process = require('child_process');
 const { injectPkgByDep, generateSolePluginConf } = require('./utils/tpl-util');
 const { vueCompoTpl } = require('./utils/tpl');
 
@@ -39,13 +39,13 @@ async function generateVueCompo(name) {
 
   fs.writeFileSync(filePath, JSON.stringify(pkg, null, 2));
 
-  child_process.exec('npm install', { cwd: projectDir }, function (err, stdout) {
-    if (err) {
-      console.error(err);
-      return;
-    }
+  try {
+    await execa('npm', ['install'], { cwd: projectDir });
     console.log(chalk.green('install over!'));
-  });
+  } catch (error) {
+    console.log(error);
+    return;
+  }
 }
 
 program.parse(process.argv);
